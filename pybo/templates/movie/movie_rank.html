@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container my-3">
+        <table class="table bg-light table-hover">
+<!--            table-hover 클래스 속성 넣어주면 마우스 올릴 때 그림자 생김-->
+                <thead>
+        <!--        thead는 테이블의 컬럼명 따위가 들어갈 부분-->
+                <tr class="thead-dark">
+        <!--            tr은 로우값-->
+
+                <th class="bg-secondary">순위</th>
+                <th class="bg-secondary">이미지</th>
+                <th class="bg-secondary">제목</th>
+                <th class="bg-secondary">평점</th>
+                <th class="bg-secondary">장르</th>
+                </thead>
+                <tbody>
+                {% for movie in rankdata %}
+                    <tr>
+                        <td> {{ loop.index }}</td>
+                        <td><img src="{{ movie.img }}"></td>
+                        <td> {{ movie.title|safe }}</td>
+                        <td> {{ movie.score|safe }}</td>
+                        <td> {{ movie.genre }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+{% endblock %}

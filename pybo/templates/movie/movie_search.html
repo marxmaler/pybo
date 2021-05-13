@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container my-3">
+        <p>검색할 영화 이름을 입력해주세요</p>
+      <form method="post" class="post-form">
+        {{ form.csrf_token }}
+<!--        form 쓰려면 이 부분은 꼭 있어야 함-->
+        {% for field,errors in form.errors.items() %}
+        <div class="alert alert-danger" role="alert">
+          <strong>{{ form[field].label }}</strong> : {{ ','.join(errors) }}
+        </div>
+        {% endfor %}
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+
+        <div class="form-group">
+          {{ form.search.label }}
+          {{ form.search(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">검색하기</button>
+      </form>
+    </div>
+    {% if movieinfo_list %}
+    <div class="container my-3">
+        <table class="table bg-light table-hover">
+                <thead>
+                <tr class="thead-dark">
+                <th class="bg-secondary">번호</th>
+                <th class="bg-secondary">이미지</th>
+                <th class="bg-secondary">제목</th>
+                <th class="bg-secondary">부제</th>
+                <th class="bg-secondary">개봉연도</th>
+                <th class="bg-secondary">감독</th>
+                <th class="bg-secondary">출연배우</th>
+                <th class="bg-secondary">평점</th>
+                </thead>
+                <tbody>
+                {% for movie in movieinfo_list %}
+                    <tr>
+                        <td> {{ loop.index }}</td>
+                        <td><img src="{{ movie.image }}"></td>
+                        <td> {{ movie.title|safe }}</td>
+                        <td> {{ movie.subtitle|replace('&amp;#233;','') }}</td>
+<!--                        Jinja로 replace하는 방법-->
+                        <td> {{ movie.pubDate|safe }}</td>
+                        <td> {{ movie.director|safe }}</td>
+                        <td> {{ movie.actor|safe }}</td>
+                        <td> {{ movie.userRating|safe }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

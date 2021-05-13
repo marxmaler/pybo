@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Hello, pybo!!</title>
+</head>
+<body class="text-white bg-dark mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <a class="navbar-brand" href="{{ url_for('main.index')}}">Pybo</a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <!--    navbar-toggler ml-auto는 작은 창이나 모바일 등에서 보이는 버튼을 자동으로 생성하는 클래스(반응형 웹)-->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+            {% if g.user %}
+            <ul class="navbar-nav">
+                <li class="navbar-nav">
+                    <p>{{ g.user.username }}님 환영합니다! </p>
+                    <a class="nav-link" href="{{ url_for('naver.book')}}">네이버 책</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('movie.movie_search')}}">네이버 영화</a>
+                </li>
+                    <li class="navbar-nav">
+                    <p> | </p>
+                    <a class="nav-link" href="{{ url_for('movie.movie_rank')}}">영화 순위</a>
+                    </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">로그아웃</a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav">
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('naver.book')}}">네이버 책</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('movie.movie_search')}}">네이버 영화</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('movie.movie_rank')}}">영화 순위</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('auth.signup')}}">계정 생성</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">로그인</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+
+    </nav>
+  {% block content %}
+  {% endblock %}
+
+<script src="{{url_for('static', filename='jquery-3.6.0.min.js')}}"></script>
+<script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+</body>
+</html>
