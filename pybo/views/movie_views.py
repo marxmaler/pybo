@@ -15,7 +15,7 @@ def movie_search():
 
     if request.method == "POST" and form.validate_on_submit():
         result = navermovie(form.search.data)
-        print(result)
+        # print(result)
         return render_template('movie/movie_search.html', movieinfo_list=result['items'], form=form) #포스트 방식일 때(검색한 후)
 
     return render_template('movie/movie_search.html', form=form) #겟 방식일 때(검색하기 전)
