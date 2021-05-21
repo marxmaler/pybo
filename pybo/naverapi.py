@@ -86,24 +86,6 @@ def navermovie(moviename):
         # print(response_body.decode('utf-8'))
         response_body = response_body.decode('utf-8')
         jsontemp = json.loads(response_body)  # 그냥 읽으려니까 안읽혀서 json 형식으로 바꿔줌
-        # items = jsontemp['items']
-        # for item in items:
-        #     print(item['title'])
-
-
-        # booklist = []
-        # for temp in response_body['items']:
-        #     # print(temp)
-        #     title = temp['title'].replace('<b>','').replace('</b>','')
-        #     author = temp['author']
-        #     price = temp['price']
-        #     publisher = temp['publisher']
-        #     pubdate = temp['pubdate']
-        #     booklist.append({'title': title,
-        #                      'author': author,
-        #                      'price': price,
-        #                      'publisher': publisher,
-        #                      'pubdate': pubdate})
 
     else:
         print("Error Code:" + rescode)
@@ -111,4 +93,30 @@ def navermovie(moviename):
 
 
 
+    return jsontemp
+
+def navershop(productname):
+
+    client_id = "ThErcuAnOGY5AkYlwZ1i"
+    client_secret = "JM0ANJuRDb"
+    encText = urllib.parse.quote(productname)
+    url = "https://openapi.naver.com/v1/search/shop?query=" + encText # json 결과
+    # url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
+    request = urllib.request.Request(url)
+    request.add_header("X-Naver-Client-Id",client_id)
+    request.add_header("X-Naver-Client-Secret",client_secret)
+    response = urllib.request.urlopen(request)
+    rescode = response.getcode()
+    if(rescode==200):
+        response_body = response.read()
+        # print(response_body.decode('utf-8'))
+        response_body = response_body.decode('utf-8')
+        jsontemp = json.loads(response_body)  # 그냥 읽으려니까 안읽혀서 json 형식으로 바꿔줌
+
+    else:
+        print("Error Code:" + rescode)
+        # sys.exit(0)
+
+
+    print(jsontemp)
     return jsontemp

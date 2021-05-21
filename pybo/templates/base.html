@@ -24,10 +24,13 @@
                 <li class="navbar-nav">
                     <a class="nav-link" href="{{ url_for('movie.movie_search')}}">네이버 영화</a>
                 </li>
-                    <li class="navbar-nav">
+                <li class="navbar-nav">
                     <p> | </p>
                     <a class="nav-link" href="{{ url_for('movie.movie_rank')}}">영화 순위</a>
-                    </li>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('chat.bot') }}">챗봇</a>
+                </li>
                 <li class="navbar-nav">
                     <a class="nav-link" href="{{ url_for('auth.logout') }}">로그아웃</a>
                 </li>
@@ -44,6 +47,9 @@
                     <a class="nav-link" href="{{ url_for('movie.movie_rank')}}">영화 순위</a>
                 </li>
                 <li class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('chat.bot') }}">챗봇</a>
+                </li>
+                <li class="navbar-nav">
                     <a class="nav-link" href="{{ url_for('auth.signup')}}">계정 생성</a>
                 </li>
                 <li class="navbar-nav">
@@ -54,10 +60,18 @@
         </div>
 
     </nav>
+
   {% block content %}
   {% endblock %}
 
 <script src="{{url_for('static', filename='jquery-3.6.0.min.js')}}"></script>
 <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Shopping"
+  agent-id="b4911e3e-e297-426c-98c3-c62460704784"
+  language-code="ko"
+></df-messenger>
 </body>
 </html>
