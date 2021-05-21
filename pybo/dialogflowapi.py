@@ -5,7 +5,7 @@ from google.protobuf.json_format import MessageToJson
 import json
 
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'shopping-vrwt-7062c2e8bdc3.json' #환경 설정 #키 파일, 만약 dialogflowapi와 같은 경로에 없다면 경로를 구체적으로 명시해줘야 함.
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r'C:\Users\marxm\Desktop\pythonProject\FlaskProject\pybo\shopping-vrwt-7062c2e8bdc3.json' #환경 설정 #키 파일, 만약 dialogflowapi와 같은 경로에 없다면 경로를 구체적으로 명시해줘야 함.
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r'C:\Users\marxm\Desktop\pythonProject\FlaskProject\shopping-vrwt-7062c2e8bdc3.json' #환경 설정 #키 파일, 만약 dialogflowapi와 같은 경로에 없다면 경로를 구체적으로 명시해줘야 함.
 
 DIALOGFLOW_PROJECT_ID = 'shopping-vrwt'
 DIALOGFLOW_LANGUAGE_CODE = 'ko'
